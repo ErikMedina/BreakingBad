@@ -9,14 +9,14 @@ import javax.inject.Inject
 /**
  * This factory is in charge of the injection of ViewModels in runtime.
  */
-class ViewModelFactory @Inject constructor(private val userViewModel: CharacterViewModel) :
+class ViewModelFactory @Inject constructor(private val characterViewModel: CharacterViewModel) :
     ViewModelProvider.Factory {
 
     @NonNull
     override fun <T : ViewModel> create(@NonNull modelClass: Class<T>): T {
         val viewModel: ViewModel
         if (modelClass == CharacterViewModel::class.java) {
-            viewModel = userViewModel
+            viewModel = characterViewModel
         } else {
             throw RuntimeException("invalid view model class: $modelClass")
         }

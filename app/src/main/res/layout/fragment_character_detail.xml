@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.character.MainActivity">
+
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="28dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_editor_absoluteX="28dp" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfile"
+        tools:text="Erik Medina" />
+
+    <TextView
+        android:id="@+id/tvOccupation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tvOccupationLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvOccupationLabel"
+        tools:text="Main character" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tvStatusLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvStatusLabel"
+        tools:text="Status 0" />
+
+    <TextView
+        android:id="@+id/tvOccupationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="39dp"
+        android:text="@string/label_occupation"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvStatusLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <TextView
+        android:id="@+id/tvStatusLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/label_status"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvOccupationLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvOccupationLabel" />
+
+    <TextView
+        android:id="@+id/tvNicknameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/label_nickname"
+        app:layout_constraintStart_toStartOf="@+id/tvStatusLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvStatusLabel" />
+
+    <TextView
+        android:id="@+id/tvNickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tvNicknameLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvNicknameLabel"
+        tools:text="Cooker" />
+
+    <TextView
+        android:id="@+id/tvSeasonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/label_season"
+        app:layout_constraintStart_toStartOf="@+id/tvNicknameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvNicknameLabel" />
+
+    <TextView
+        android:id="@+id/tvSeason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tvSeasonLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvSeasonLabel"
+        tools:text="1, 2, 3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
