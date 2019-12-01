@@ -1,8 +1,8 @@
 package com.erikmedina.breakingbad.core.di.application
 
 import com.erikmedina.breakingbad.MyApp
-import com.erikmedina.breakingbad.core.data.remote.network.RetrofitBuilder
 import com.erikmedina.breakingbad.core.data.remote.network.ApiRest
+import com.erikmedina.breakingbad.core.data.remote.network.RetrofitBuilder
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides

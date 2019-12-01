@@ -1,6 +1,6 @@
 package com.erikmedina.breakingbad.core.data.remote.network
 
-import com.erikmedina.breakingbad.core.data.remote.model.StackOverflowEntity
+import com.erikmedina.breakingbad.core.data.remote.model.CharacterEntity
 import io.reactivex.Single
 import retrofit2.http.GET
 
@@ -10,5 +10,5 @@ import retrofit2.http.GET
 interface ApiRest {
 
     @GET("characters")
-    fun getCharacters(): Single<StackOverflowEntity>
+    fun getCharacters(): Single<List<CharacterEntity>>
 }

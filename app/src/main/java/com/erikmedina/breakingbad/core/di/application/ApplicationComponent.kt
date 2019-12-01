@@ -1,7 +1,8 @@
 package com.erikmedina.breakingbad.core.di.application
 
 import com.erikmedina.breakingbad.MyApp
-import com.erikmedina.breakingbad.core.di.application.ApplicationModule
+import com.erikmedina.breakingbad.core.di.presentation.PresentationComponent
+import com.erikmedina.breakingbad.core.di.presentation.PresentationModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -23,5 +24,5 @@ interface ApplicationComponent {
      *
      * Then, this function ties the relationship between PresentationComponent and MyAppComponent.
      */
-//    fun newPresentationComponent(presentationModule: PresentationModule): PresentationComponent
+    fun newPresentationComponent(presentationModule: PresentationModule): PresentationComponent
 }
