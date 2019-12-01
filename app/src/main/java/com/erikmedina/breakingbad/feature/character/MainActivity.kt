@@ -1,7 +1,13 @@
 package com.erikmedina.breakingbad.feature.character
 
+import android.app.SearchManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
 import android.widget.FrameLayout
+import android.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import com.erikmedina.breakingbad.R
 import com.erikmedina.breakingbad.core.base.BaseActivity
@@ -28,6 +34,25 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         startCharacterListFragment(savedInstanceState)
+        viewModel.getCharacters()
+        handleIntent(intent)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.options_menu, menu)
+
+        // Associate searchable configuration with the SearchView
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (menu?.findItem(R.id.search)?.actionView as SearchView).apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        }
+
+        return true
     }
 
     private fun startCharacterListFragment(savedInstanceState: Bundle?) {
@@ -44,5 +69,18 @@ class MainActivity : BaseActivity() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, characterListFragment).commit()
         }
+    }
+
+    private fun handleIntent(intent: Intent?) {
+
+        if (Intent.ACTION_SEARCH == intent?.action) {
+            val query = intent.getStringExtra(SearchManager.QUERY)
+            Log.d(TAG, "Query: $query")
+            viewModel.filterCharacterByName(query)
+        }
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
     }
 }

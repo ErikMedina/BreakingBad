@@ -19,24 +19,41 @@ class CharacterViewModel @Inject constructor(private val getCharactersUseCase: G
 
     val result = MutableLiveData<Result>()
 
+    private var characters: List<Character> = emptyList()
+    private var charactersFiltered: List<Character> = emptyList()
     private val disposables = CompositeDisposable()
+    private var isFirstTime = true
 
     fun getCharacters() {
-        disposables.add(getCharactersUseCase.execute()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { result.value = Result(status = Status.LOADING) }
-            .subscribe(
-                { characters ->
-                    result.value = Result(status = Status.SUCCESS, data = characters)
-                },
-                {
-                    result.value = Result(
-                        status = Status.ERROR,
-                        error = Error(Error.Type.GENERAL_ERROR)
-                    )
-                }
+        if (isFirstTime) { // avoid new calls when the device is rotated
+            isFirstTime = false
+            disposables.add(getCharactersUseCase.execute()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { result.value = Result(status = Status.LOADING) }
+                .subscribe(
+                    { characters ->
+                        this.characters = characters
+                        result.value = Result(status = Status.SUCCESS, data = this.characters)
+                    },
+                    {
+                        result.value = Result(
+                            status = Status.ERROR,
+                            error = Error(Error.Type.GENERAL_ERROR)
+                        )
+                    }
+                )
             )
-        )
+        }
+    }
+
+    fun filterCharacterByName(query: String?) {
+        charactersFiltered = characters.filter { it.name.contains(query!!, true) }
+        result.value = Result(status = Status.SUCCESS, data = charactersFiltered)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposables.clear()
     }
 }

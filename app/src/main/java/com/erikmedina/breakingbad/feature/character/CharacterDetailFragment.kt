@@ -2,11 +2,13 @@ package com.erikmedina.breakingbad.feature.character
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import com.erikmedina.breakingbad.R
+import com.erikmedina.breakingbad.R.layout
 import com.erikmedina.breakingbad.core.base.BaseFragment
 import com.erikmedina.breakingbad.core.image.ImageLoader
 import kotlinx.android.synthetic.main.fragment_character_detail.*
@@ -25,6 +27,8 @@ class CharacterDetailFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         getPresentationComponent().inject(this)
 
+        setHasOptionsMenu(true) // update options of the menu
+
         // Shared ViewModel between Activity and Fragments
         viewModel = ViewModelProviders.of(fragmentActivity).get(CharacterViewModel::class.java)
     }
@@ -34,12 +38,21 @@ class CharacterDetailFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_character_detail, container, false)
+        return inflater.inflate(
+            layout.fragment_character_detail,
+            container,
+            false
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         processUser()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.removeItem(R.id.search) // remove the search option in this fragment
     }
 
     private fun processUser() {

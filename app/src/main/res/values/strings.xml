@@ -7,4 +7,6 @@
     <string name="label_nickname">Nickname:</string>
     <string name="label_season">Season:</string>
     <string name="label_occupation">Occupation:</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Character…</string>
 </resources>
