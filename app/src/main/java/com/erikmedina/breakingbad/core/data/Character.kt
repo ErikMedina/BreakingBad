@@ -7,5 +7,5 @@ data class Character(
     var occupation: List<String>,
     var status: String,
     var nickname: String,
-    var appearance: List<Long>
+    var appearance: List<Int>
 )

@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -21,7 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_character_list.*
 import javax.inject.Inject
 
-class CharacterListFragment : BaseFragment() {
+class CharacterListFragment : BaseFragment(), AdapterView.OnItemSelectedListener {
 
     @Inject
     lateinit var fragmentActivity: FragmentActivity
@@ -60,6 +62,19 @@ class CharacterListFragment : BaseFragment() {
             navigator.startCharacterDetailFragment()
         }
 
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            fragmentActivity,
+            R.array.seasons_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+            spinner.onItemSelectedListener = this
+        }
+
         viewModel.getCharacters()
     }
 
@@ -91,6 +106,16 @@ class CharacterListFragment : BaseFragment() {
         Log.e(TAG, error.toString())
         progressBar.visibility = View.GONE
         Snackbar.make(requireView(), error!!.message, Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        // do nothing
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.d(TAG, "[onItemSelected] position $position selected")
+        val item = spinner.getItemAtPosition(position)
+        viewModel.filterCharactersBySeason(item.toString())
     }
 
     companion object {

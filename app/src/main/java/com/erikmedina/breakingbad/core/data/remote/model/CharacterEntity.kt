@@ -36,7 +36,7 @@ data class CharacterEntity(
     var nickname: String = "n/a",
     @SerializedName("appearance")
     @Expose
-    var appearance: List<Long> = emptyList(),
+    var appearance: List<Int> = emptyList(),
     @SerializedName("portrayed")
     @Expose
     var portrayed: String = "n/a",

@@ -56,4 +56,14 @@ class CharacterViewModel @Inject constructor(private val getCharactersUseCase: G
         super.onCleared()
         disposables.clear()
     }
+
+    fun filterCharactersBySeason(item: String?) {
+        try {
+            val seasonInt = item?.toInt()
+            charactersFiltered = characters.filter { it.appearance.contains(seasonInt) }
+            result.value = Result(status = Status.SUCCESS, data = charactersFiltered)
+        } catch (nfe: NumberFormatException) {
+            result.value = Result(status = Status.SUCCESS, data = characters)
+        }
+    }
 }
