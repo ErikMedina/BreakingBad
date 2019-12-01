@@ -4,7 +4,7 @@
     <string name="error_general">An error ocurred</string>
     <string name="error_no_characters">No characters found</string>
     <string name="label_status">Status:</string>
-    <string name="label_nickname">Nickname</string>
+    <string name="label_nickname">Nickname:</string>
     <string name="label_season">Season:</string>
     <string name="label_occupation">Occupation:</string>
 </resources>

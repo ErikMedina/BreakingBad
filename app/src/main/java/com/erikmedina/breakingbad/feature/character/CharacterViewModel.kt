@@ -2,6 +2,7 @@ package com.erikmedina.breakingbad.feature.character
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.erikmedina.breakingbad.core.data.Character
 import com.erikmedina.breakingbad.core.result.Error
 import com.erikmedina.breakingbad.core.result.Result
 import com.erikmedina.breakingbad.core.result.Status
@@ -13,6 +14,8 @@ import javax.inject.Inject
 
 class CharacterViewModel @Inject constructor(private val getCharactersUseCase: GetCharactersUseCase) :
     ViewModel() {
+
+    var character: Character? = null
 
     val result = MutableLiveData<Result>()
 

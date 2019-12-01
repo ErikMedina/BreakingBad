@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class Navigator @Inject constructor(private val fragmentActivity: FragmentActivity) {
 
-    fun startPostDetailFragment() {
+    fun startCharacterDetailFragment() {
         // Create fragment and give it an argument specifying the article it should show
         val postDetailFragment = CharacterDetailFragment()
         val transaction = fragmentActivity.supportFragmentManager.beginTransaction().apply {

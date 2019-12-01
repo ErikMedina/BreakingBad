@@ -55,10 +55,10 @@ class CharacterListFragment : BaseFragment() {
 
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(fragmentActivity)
-//        adapter.characterListener = {
-//            viewModel.user = it
-//            navigator.startPostDetailFragment()
-//        }
+        adapter.characterListener = {
+            viewModel.character = it
+            navigator.startCharacterDetailFragment()
+        }
 
         viewModel.getCharacters()
     }

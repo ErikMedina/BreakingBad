@@ -8,4 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="LabelStyle">
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginBottom">39dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LabelLandscapeStyle">
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
