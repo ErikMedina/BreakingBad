@@ -52,18 +52,18 @@ class CharacterViewModel @Inject constructor(private val getCharactersUseCase: G
         result.value = Result(status = Status.SUCCESS, data = charactersFiltered)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        disposables.clear()
-    }
-
-    fun filterCharactersBySeason(item: String?) {
+    fun filterCharactersBySeason(season: String?) {
         try {
-            val seasonInt = item?.toInt()
+            val seasonInt = season?.toInt()
             charactersFiltered = characters.filter { it.appearance.contains(seasonInt) }
             result.value = Result(status = Status.SUCCESS, data = charactersFiltered)
         } catch (nfe: NumberFormatException) {
             result.value = Result(status = Status.SUCCESS, data = characters)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposables.clear()
     }
 }
