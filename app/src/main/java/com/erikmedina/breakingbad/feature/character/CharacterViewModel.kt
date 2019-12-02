@@ -23,6 +23,7 @@ class CharacterViewModel @Inject constructor(private val getCharactersUseCase: G
     private var charactersFiltered: List<Character> = emptyList()
     private val disposables = CompositeDisposable()
     private var isFirstTime = true
+    private var previousSeason: String? = null
 
     fun getCharacters() {
         if (isFirstTime) { // avoid new calls when the device is rotated
@@ -53,12 +54,16 @@ class CharacterViewModel @Inject constructor(private val getCharactersUseCase: G
     }
 
     fun filterCharactersBySeason(season: String?) {
-        try {
-            val seasonInt = season?.toInt()
-            charactersFiltered = characters.filter { it.appearance.contains(seasonInt) }
-            result.value = Result(status = Status.SUCCESS, data = charactersFiltered)
-        } catch (nfe: NumberFormatException) {
-            result.value = Result(status = Status.SUCCESS, data = characters)
+
+        if (season != previousSeason) {
+            previousSeason = season
+            try {
+                val seasonInt = season?.toInt()
+                charactersFiltered = characters.filter { it.appearance.contains(seasonInt) }
+                result.value = Result(status = Status.SUCCESS, data = charactersFiltered)
+            } catch (nfe: NumberFormatException) {
+                result.value = Result(status = Status.SUCCESS, data = characters)
+            }
         }
     }
 
